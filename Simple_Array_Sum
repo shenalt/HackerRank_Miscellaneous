@@ -1,0 +1,10 @@
+/* DESCRIPTION
+Given an array of integers, find the sum of its elements.
+DESCRIPTION */
+
+static int simpleArraySum(int[] ar) {
+        int sum = 0;
+        for(int x : ar)
+            sum += x;
+        return sum;
+    }
