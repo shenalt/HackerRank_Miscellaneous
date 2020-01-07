@@ -1,0 +1,50 @@
+/* DESCRIPTION
+Gary is an avid hiker. He tracks his hikes meticulously, paying close attention to small details like 
+topography. During his last hike he took exactly n steps. For every step he took, he noted if it was 
+an uphill, U, or a downhill, D step. Gary's hikes start and end at sea level and each step up or down
+represents a 1 unit change in altitude. We define the following terms:
+
+  * A mountain is a sequence of consecutive steps above sea level, starting with 
+    a step up from sea level and ending with a step down to sea level.
+  * A valley is a sequence of consecutive steps below sea level, starting with a 
+    step down from sea level and ending with a step up to sea level.
+
+Given Gary's sequence of up and down steps during his last hike, find and print the number of valleys 
+he walked through. For example, if Gary's path is, s = [DDUUUUDD], he first enters a valley 2 units 
+deep. Then he climbs out an up onto a mountain 2 units high. Finally, he returns to sea level and ends 
+his hike.
+DESCRIPTION */
+
+static int countingValleys(int n, String s) {
+        // counter is used to traverse through our char array in the while loop - Line 16
+        int counter = 0;
+        
+        // keeps track of the amount of valleys 
+        int valleys = 0;
+        
+        boolean isNegative;
+        
+        // Create a new char array to store all characters of the string individually
+        char [] ar = new char[s.length()];
+        
+        // Loading up the char array 
+        for(int i = 0; i < s.length(); i++){
+            ar[i] = s.charAt(i);
+        }
+        
+        //tracker keeps track of every step in terms of whether it is up or down 
+        int tracker = 0;
+        
+        while(counter < ar.length){
+            if(ar[counter] == 'U'){ 
+                tracker++;          // If U, increment tracker since we are going up
+                if(tracker == 0)    // If tracker = 0, we know that we were coming from below sea level to sea level
+                    valleys++;      // meaning we have just went through a valley
+            }
+            else{
+                tracker--;        // Else, if D, we keep moving down and decrement tracker
+            }
+            counter++;
+        }
+        return valleys;
+    }
