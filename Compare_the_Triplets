@@ -1,0 +1,43 @@
+/* DESCRIPTION
+Comparison points is the total points a person earned.
+
+Given a and b, determine their respective comparison points.
+
+For example, a = [1,2,3] and b = [3,2,1]. For elements 0, Bob is awarded a point because 
+a[0] < b[0]. For the equal elements a[1] and b[1], no points are earned. Finally, for 
+elements 2, a[2] > b[2] so Alice receives a point. Your return array would be [1,1] with 
+Alice's score first and Bob's second. 
+
+Return an array of two integers denoting the respective comparison points earned by Alice and Bob.
+DESCRIPTION */
+ 
+ static List<Integer> compareTriplets(List<Integer> a, List<Integer> b) {
+        List<Integer> list = new ArrayList<Integer>();
+        // Alice's rating
+        int alice = 0;
+        
+        // Bob's Rating
+        int bob = 0;
+        
+        // Alice's score from the List a
+        int A = 0;
+        
+        // Bob's score from the List b
+        int B = 0;
+
+        for(int i = 0; i < 3; i++){
+            A = a.get(i);
+            B = b.get(i);
+            if(A > B)       // Compare the scores, whoever has the higher score, tally it on to the namesake's 
+                alice++;    // variable, if it's a draw, do nothing and move on 
+            else if(A < B)
+                bob++;
+            else;
+        }
+
+        list.add(alice);
+        list.add(bob);
+
+        return list;
+
+    }
