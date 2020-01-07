@@ -1,0 +1,63 @@
+/* DESCRIPTION
+John works at a clothing store. He has a large pile of socks that he must pair
+by color for sale. Given an array of integers representing the color of each 
+sock, determine how many pairs of socks with matching colors there are. For 
+example, there are socks with colors. There is one pair of color  and one of 
+color. There are three odd socks left, one of each color. The number of pairs is.
+*/ DESCRIPTION
+
+static int sockMerchant(int n, int[] ar) {
+        Set<Integer> keepCount = new TreeSet<>();
+        // index for the array ar
+        int i = 0; 
+        
+        // keeps track of the amount of pairs
+        int numOfPairs = 0;
+        
+        // Tells me how many pairs were found through each iteration
+        int tracker = 0; 
+        
+        while(i < ar.length){ // Going through the contents of ar
+            int temp = ar[i]; 
+            if(keepCount.contains(ar[i])) // If the set contains ar[i], that means it has already gone through the array 
+                i++;                      // to search for its duplicates and we don't need to worry about it 
+            else{
+                keepCount.add(ar[i]);
+                for(int j = i+1; j < ar.length; j++){ // Keep a tally of how many times the value repeats if at all
+                    if(ar[j] == temp)
+                        tracker++; // Amount of repititions is kept
+              }
+              
+              /* If there is only one repition, increment numOfPairs only by 1 */
+              if(tracker == 1) 
+                numOfPairs++;
+                
+              /* 
+                 If there is an odd number of repitions, that means there is an even number of the same value
+                 We increment numOfPairs by half the tracker variable plus 1 to make up for the pair including
+                 the first value 
+              */
+              else if(tracker % 2 == 1)
+                numOfPairs += (tracker/2)+1;
+                
+              /*
+                If tracker is exactly 2, that means the value appears 3 times in the array, meaning there is one
+                value left out which tells us there is only one pair
+              */
+              else if(tracker == 2)
+                numOfPairs++;
+                
+              /*
+                If tracker is even, that means there is an odd amount of occurrences of the value meaning there will
+                be one value left out of the pairs so there are only tracker/2 amount of pairs of the value
+              */
+              else if(tracker % 2 == 0)
+                numOfPairs += (tracker / 2);
+                
+                // Tracker resets and i is incremented by 1
+                tracker = 0;
+                i++;
+            }
+        }
+        return numOfPairs;
+    }
