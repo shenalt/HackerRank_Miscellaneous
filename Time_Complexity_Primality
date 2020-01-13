@@ -1,0 +1,24 @@
+/* DESCRIPTION
+A prime is a natural number greater than 1 that has no positive divisors other 
+than 1 and itself. Given p integers, determine the primality of each integer and 
+print whether it is Prime or Not prime on a new line.
+DESCRIPTION */
+
+static String primality(int n) {
+        if(n < 2)
+            return "Not prime";
+        
+        else if(n <= 3)
+            return "Prime";
+
+        else if(n % 2 == 0 || n % 3 == 0)
+            return "Not prime";
+        
+        else{                                            
+            for(int i = 2; i < Math.sqrt(n) + 1; i++){  // Factors of a number won't go past its square root
+                if(n % i == 0)                          // so that is where we will go up to in the for loop
+                    return "Not prime";
+            }
+        }
+        return "Prime";
+    }
