@@ -4,3 +4,4 @@ Solutions to General HackerRank Problems
 - Counting Valleys | Java 8
 - Compare the Triplets | Java 8
 - Simple Array Sum | Java 8
+- Time Complexity: Primality | Java 8
